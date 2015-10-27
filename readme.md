@@ -1,6 +1,6 @@
 Hevelop Gls
 =====================
-Auto export shipping to GLS
+Auto export shipping to GLS using cron scheduler
 
 Requirements
 ------------
