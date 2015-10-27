@@ -8,7 +8,7 @@ Requirements
 
 Screenshoots
 -------
-![alt tag](https://raw.github.com/hevelop/gls/master/readme/screeb-be.png)
+![alt tag](/readme/screen-be.png)
 
 Support
 -------
