@@ -1,14 +1,14 @@
-Hevelop Gls Extension
+Hevelop Gls
 =====================
 Auto export shipping to GLS
-
-Description
------------
-This paragraph describes what the extension does.
 
 Requirements
 ------------
 - hevelop/transliteration
+
+Screenshoots
+-------
+![alt tag](https://raw.github.com/hevelop/gls/master/readme/screeb-be.png)
 
 Support
 -------
