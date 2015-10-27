@@ -1,0 +1,15 @@
+{
+    "name": "Hevelop/Gls",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Auto export shipping to GLS",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors":[
+        {
+            "name":"Alex Bordin",
+            "email":"bordin.alex@gmail.com"
+        }
+    ]
+}

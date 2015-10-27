@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <hevelop translate="label" module="hevelop_gls">
+            <label>Hevelop</label>
+            <sort_order>200</sort_order>
+        </hevelop>
+    </tabs>
+    <sections>
+        <hevelopgls translate="label comment" module="hevelop_gls">
+            <label>Gls</label>
+            <tab>hevelop</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>99</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label comment" module="hevelop_gls">
+                    <label>General</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment" module="hevelop_gls">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enabled>
+                        <debug_enabled translate="label comment" module="hevelop_gls">
+                            <label>Debug Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show debug info in file export_gls.log</comment>
+                        </debug_enabled>
+                    </fields>
+                </general>
+                <ftp translate="label comment" module="hevelop_gls">
+                    <label>Ftp</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment" module="hevelop_gls">
+                            <label>Enabled ftp automatic upload</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enabled>
+                        <host translate="label comment" module="hevelop_gls">
+                            <label>Host</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>eg: hevelop.com</comment>
+                        </host>
+                        <user translate="label comment" module="hevelop_gls">
+                            <label>User</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </user>
+                        <password translate="label comment" module="hevelop_gls">
+                            <label>Password</label>
+                            <frontend_type>obscure</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </password>
+                        <remote_path translate="label comment" module="hevelop_gls">
+                            <label>Path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Use absolute path. eg: /var/upload/</comment>
+                        </remote_path>
+                    </fields>
+                </ftp>
+            </groups>
+        </hevelopgls>
+    </sections>
+</config>

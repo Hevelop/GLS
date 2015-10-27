@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Hevelop_Gls>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends><Hevelop_Transliteration/></depends>
+        </Hevelop_Gls>
+    </modules>
+</config>

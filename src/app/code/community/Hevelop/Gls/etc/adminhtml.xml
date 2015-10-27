@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* @package    hevelop_Cookielaw
+* @author     Simone Marcato (simone@hevelop.com)
+* @copyright  Copyright (c) 2014 Hevelop Web
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <hevelopgls translate="title" module="hevelop_gls">
+                                        <title>Hevelop - Gls</title>
+                                    </hevelopgls>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
