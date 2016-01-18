@@ -82,7 +82,7 @@ class Hevelop_Gls_Model_Cron
         $this->addColumn($row, $helperGls->formatNumber($shippingAddress->getPostcode(), 5));
 
         //Sigla Provincia
-        $this->addColumn($row, $helperGls->formatString($shippingAddress->getRegion(), 2));
+        $this->addColumn($row, $helperGls->formatString($shippingAddress->getRegionCode(), 2));
 
         //Numero documento di trasporto
         $this->addColumn($row, $helperGls->formatNumber($shipment->getIncrementId(), 10));
@@ -92,38 +92,62 @@ class Hevelop_Gls_Model_Cron
         $this->addColumn($row, $helperGls->formatString($shipmentDate, 6));
 
         //Numero colli
-        $this->addColumn($row, $helperGls->formatNumber($shipment->getTotalQty(), 5));
+        $this->addColumn($row, $helperGls->formatNumber(1, 5));
 
         //Numero bancali
         $this->addColumn($row, $helperGls->formatNumber(0, 2));
 
         //Peso
-        $this->addColumn($row, $helperGls->formatNumber($shipment->getTotalWeight(), 6, 1));
+        $totalWeight = 0;
+        //ciclo gli items e calcolo i weight
+        $shipmentItems = $shipment->getAllItems();
+        foreach ($shipmentItems AS $item) {
+            $itemData = $item->getData();
+            $weight = 0;
+            if (!isset($itemData['weight'])) {
+                $weight = $item->getWeight();
+            } else {
+                // uso i pesi dagli item dell'ordine
+                foreach ($shipment->getOrder()->getAllItems() as $w) {
+                    if ($w->getProductId() == $item->getProductId()) {
+                        $weight = $w->getWeight();
+                    }
+                }
+            }
+            $totalWeight += $weight * $item->getQty();
+        }
+        if($totalWeight == 0){
+            $totalWeight = 1;
+        }
+        $this->addColumn($row, $helperGls->formatNumber($totalWeight, 6, 1));
 
         //Importo Contrassegno
         $this->addColumn($row, $helperGls->formatNumber(0, 10, 2));
 
         //Note
-        $this->addColumn($row, $helperGls->formatString('', 60));
+        $this->addColumn($row, $helperGls->formatString('', 40));
 
         //Tipo di Porto
         //F=Franco - A=Assegnato
         $this->addColumn($row, $helperGls->formatString('F', 1));
 
-        //Fermo Deposito
-        $this->addColumn($row, $helperGls->formatString('', 15));
+        //Peso Volume
+        $this->addColumn($row, $helperGls->formatNumber(0, 11, 1));
 
         //Assicurazione
         $this->addColumn($row, $helperGls->formatNumber(0, 11, 2));
 
-        //Peso Volume
-        $this->addColumn($row, $helperGls->formatNumber(0, 11, 1));
+        //Note Aggiuntive Cliente
+        $this->addColumn($row, $helperGls->formatString('', 40));
+
+        //Tipo di Collo
+        $this->addColumn($row, $helperGls->formatString('', 1));
+
+        //Valore Dichiarato
+        $this->addColumn($row, $helperGls->formatString('', 11));
 
         //Riferimento Cliente
         $this->addColumn($row, $helperGls->formatString('', 600));
-
-        //Note Aggiuntive Cliente
-        $this->addColumn($row, $helperGls->formatString('', 40));
 
         //Id Collo Iniziale
         $this->addColumn($row, $helperGls->formatNumber(0, 15));
@@ -134,7 +158,7 @@ class Hevelop_Gls_Model_Cron
         //Notifica Email
         $this->addColumn($row, $helperGls->formatString('', 70));
 
-        //Notifica Sms
+        //Notifica Sms 10+10
         $this->addColumn($row, $helperGls->formatString('', 20));
 
         //Codici Servizi Sprinter
@@ -142,12 +166,6 @@ class Hevelop_Gls_Model_Cron
 
         //Filler
         $this->addColumn($row, $helperGls->formatString('', 33));
-
-        //Data Prenotazione
-        $this->addColumn($row, $helperGls->formatString('', 6));
-
-        //Note Orario
-        $this->addColumn($row, $helperGls->formatString('', 40));
 
         //Modalità Incasso
         //CONT=CONTANTE
@@ -162,6 +180,12 @@ class Hevelop_Gls_Model_Cron
         //ASRP=ASS COM RIL NO PT
         //ASS=ASS CIRC/BANC/POST
         $this->addColumn($row, $helperGls->formatString('', 4));
+
+        //Data Prenotazione
+        $this->addColumn($row, $helperGls->formatString('', 6));
+
+        //Note Orario
+        $this->addColumn($row, $helperGls->formatString('', 40));
 
         $this->addColumn($row, self::NEW_LINE);
         return $row;

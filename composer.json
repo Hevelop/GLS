@@ -5,7 +5,7 @@
     "description": "Auto export shipping to GLS",
     "require": {
         "magento-hackathon/magento-composer-installer": "*",
-        "hevelop/transliteration": "^1.0.1"
+        "hevelop/transliteration": "^1.0"
     },
     "authors":[
         {
