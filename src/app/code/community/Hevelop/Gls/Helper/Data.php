@@ -59,18 +59,20 @@ class Hevelop_Gls_Helper_Data extends Mage_Core_Helper_Abstract
         return Mage::getStoreConfig(self::XML_PATH_DEBUG_ENABLED);
     }
 
-    public function formatString($string = '', $length)
+    public function formatString($string = '', $length = null)
     {
         if (is_null($string)) {
             $string = '';
         }
         $string = Mage::helper('transliteration')->trslt($string);
-        $string = substr($string, 0, $length);
-        $string = str_pad($string, $length, " ", STR_PAD_RIGHT);
+        if ($length) {
+            $string = substr($string, 0, $length);
+            $string = str_pad($string, $length, " ", STR_PAD_RIGHT);
+        }
         return $string;
     }
 
-    public function formatNumber($number = 0, $length, $decimals = 0)
+    public function formatNumber($number = 0, $length = null, $decimals = 0)
     {
         if (is_null($number)) {
             $number = 0;
@@ -81,8 +83,10 @@ class Hevelop_Gls_Helper_Data extends Mage_Core_Helper_Abstract
         } else {
             $number = (int)floor($number);
         }
-        $number = substr($number, -1 * $length);
-        $number = str_pad($number, $length, "0", STR_PAD_LEFT);
+        if ($length) {
+            $number = substr($number, -1 * $length);
+            $number = str_pad($number, $length, "0", STR_PAD_LEFT);
+        }
         return $number;
     }
 
@@ -92,5 +96,18 @@ class Hevelop_Gls_Helper_Data extends Mage_Core_Helper_Abstract
         if ($this->isDebugEnabled()) {
             Mage::log($message, Zend_Log::DEBUG, self::LOG_FILE);
         }
+    }
+
+    public static function isModuleInstalled($moduelName, $class)
+    {
+        $_modules = (array)Mage::getConfig()->getNode('modules')->children();
+        if (array_key_exists($moduelName, $_modules)
+            && 'true' == (string)$_modules[$moduelName]->active
+            && !(bool)Mage::getStoreConfig('advanced/modules_disable_output/' . $moduelName)
+            && @class_exists($class)
+        ) {
+            return true;
+        }
+        return false;
     }
 }

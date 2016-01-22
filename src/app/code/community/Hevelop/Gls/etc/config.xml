@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Hevelop_Gls>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </Hevelop_Gls>
     </modules>
     <global>
@@ -10,6 +10,16 @@
             <hevelop_gls>
                 <class>Hevelop_Gls_Block</class>
             </hevelop_gls>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_grid>Hevelop_Gls_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
+                </rewrite>
+            </adminhtml>
+            <deleteorder>
+                <rewrite>
+                    <adminhtml_sales_order_grid>Hevelop_Gls_Block_Adminhtml_Sales_Order_Grid</adminhtml_sales_order_grid>
+                </rewrite>
+            </deleteorder>
         </blocks>
         <helpers>
             <hevelop_gls>
@@ -29,6 +39,17 @@
             </hevelop_gls_setup>
         </resources>
     </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <hevelop_gls before="Mage_Adminhtml">Hevelop_Gls</hevelop_gls>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
     <crontab>
         <jobs>
             <export_shipment_gls>
@@ -45,6 +66,7 @@
         <general>
             <enabled>0</enabled>
             <debug_enabled>0</debug_enabled>
+            <delimiter>;</delimiter>
         </general>
         <ftp>
             <enabled>0</enabled>
