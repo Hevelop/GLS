@@ -12,7 +12,7 @@ Please configure gls weblabeling like the screenshot.
 
 Type of export:
 
-- manual: from salses order grid select or filter order you want to export and select "GLS CSV" from export select box and click "Export"
+- manual: from sales order grid select or filter order you want to export and select "GLS CSV" from export select box and click "Export"
 - auto: configura cron scheduler to run task "export_shipment_gls"
 
 Screenshoots
