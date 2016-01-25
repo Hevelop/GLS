@@ -15,6 +15,9 @@ Type of export:
 - manual: from sales order grid select or filter order you want to export and select "GLS CSV" from export select box and click "Export"
 - auto: configura cron scheduler to run task "export_shipment_gls"
 
+To see link on **shipment email** copy app/design/frontend/base/default/template/hevelop/email/order/shipment/track.phtml to app/design/frontend/[your-package]/[your-theme]/template/email/order/shipment/track.phtml
+
+
 Screenshoots
 -------
 ![alt tag](/readme/screen-be.png)
