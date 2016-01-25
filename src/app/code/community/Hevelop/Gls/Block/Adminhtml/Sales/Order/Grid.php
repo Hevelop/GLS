@@ -40,7 +40,8 @@ class Hevelop_Gls_Block_Adminhtml_Sales_Order_Grid extends Hevelop_Gls_Block_Adm
         $io->open(array('path' => $path));
         $io->streamOpen($file, 'w+');
         $io->streamLock(true);
-        $io->streamWriteCsv(Mage::getModel('hevelop_gls/exporter')->getHeaderRow(), Mage::getStoreConfig('hevelopgls/general/delimiter'));
+        //Write row header
+//        $io->streamWriteCsv(Mage::getModel('hevelop_gls/exporter')->getHeaderRow(), Mage::getStoreConfig('hevelopgls/general/delimiter'));
 
         //Write row with order information
         $this->_exportIterateCollection('_exportGlsItem', array($io));

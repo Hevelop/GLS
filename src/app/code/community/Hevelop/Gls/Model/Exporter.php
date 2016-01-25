@@ -71,7 +71,7 @@ class Hevelop_Gls_Model_Exporter
         //4 ZIP Code
         $this->addColumn($row, 'ZIP Code');
         //5 Provincia / Stato
-        $this->addColumn($row, 'Provincia/Stato');
+        $this->addColumn($row, 'PR');
         //6 BDA / DDT
         $this->addColumn($row, 'BDA/DDT');
         //7 Data documento di trasporto
@@ -163,34 +163,34 @@ class Hevelop_Gls_Model_Exporter
         } else {
             $shippingName = $shippingAddress->getName();
         }
-        $this->addColumn($row, $helperGls->formatString($shippingName));
+        $this->addColumn($row, $helperGls->formatString($shippingName, 35));
 
         //2 Indirizzo
         $shippingStreet = $shippingAddress->getStreet();
         $shippingStreet = is_array($shippingStreet) ? implode(' ', $shippingStreet) : $shippingStreet;
-        $this->addColumn($row, $helperGls->formatString($shippingStreet));
+        $this->addColumn($row, $helperGls->formatString($shippingStreet, 35));
 
         //3 Località
-        $this->addColumn($row, $helperGls->formatString($shippingAddress->getCity()));
+        $this->addColumn($row, $helperGls->formatString($shippingAddress->getCity(), 30));
 
         //4 ZIP Code
-        $this->addColumn($row, $helperGls->formatNumber($shippingAddress->getPostcode()));
+        $this->addColumn($row, $helperGls->formatNumber($shippingAddress->getPostcode(), 5));
 
         //5 Provincia / Stato
-        $this->addColumn($row, $helperGls->formatString($shippingAddress->getRegionCode()));
+        $this->addColumn($row, $helperGls->formatString($shippingAddress->getRegionCode(), 2));
 
         //6 BDA / DDT
-        $this->addColumn($row, $helperGls->formatNumber($order->getIncrementId()));
+        $this->addColumn($row, $helperGls->formatNumber($order->getIncrementId(), 10));
 
         //7 Data documento di trasporto
         $orderDate = date('ymd', time()); //Data shipment uguale al momento dell'export
-        $this->addColumn($row, $helperGls->formatString($orderDate));
+        $this->addColumn($row, $helperGls->formatString($orderDate, 6));
 
         //8 Colli
-        $this->addColumn($row, $helperGls->formatNumber(1));
+        $this->addColumn($row, $helperGls->formatNumber(1, 5));
 
         //9 Incoterm
-        $this->addColumn($row, $helperGls->formatNumber(0));
+        $this->addColumn($row, $helperGls->formatNumber(0, 2));
 
         //10 Peso reale
         $totalWeight = 0;
@@ -207,62 +207,62 @@ class Hevelop_Gls_Model_Exporter
         if ($totalWeight == 0) {
             $totalWeight = 1;
         }
-        $this->addColumn($row, $helperGls->formatNumber($totalWeight, null, 1));
+        $this->addColumn($row, $helperGls->formatNumber($totalWeight, 6, 1));
 
         //11 Importo Contrassegno
-        $this->addColumn($row, $helperGls->formatNumber(0, null, 2));
+        $this->addColumn($row, $helperGls->formatNumber(0, 10, 2));
 
         //12 Note
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 40));
 
         //13 Tipo porto
         //F=Franco - A=Assegnato
-        $this->addColumn($row, $helperGls->formatString('F'));
+        $this->addColumn($row, $helperGls->formatString('F', 1));
 
         //14 Colonna vuota
         $this->addColumn($row, $helperGls->formatString(''));
 
         //15 Importo assicurazione
-        $this->addColumn($row, $helperGls->formatNumber(0, null, 2));
+        $this->addColumn($row, $helperGls->formatNumber(0, 11, 2));
 
         //16 Peso Volume
-        $this->addColumn($row, $helperGls->formatNumber(0, null, 1));
+        $this->addColumn($row, $helperGls->formatNumber(0, 11, 1));
 
         //17 Tipo di Collo
-        $this->addColumn($row, $helperGls->formatNumber(0));
+        $this->addColumn($row, $helperGls->formatNumber(0, 1));
 
         //18 Colonna vuota
         $this->addColumn($row, $helperGls->formatString(''));
 
         //19 Riferimenti etichettatura
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 600));
 
         //20 Note Aggiuntive Cliente
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 40));
 
         //21 Codice Cliente
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 30));
 
         //22 Valore Dichiarato
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 11));
 
         //23 Id Collo Iniziale
-        $this->addColumn($row, $helperGls->formatNumber(0));
+        $this->addColumn($row, $helperGls->formatNumber(0, 15));
 
         //24 Id Collo Finale
-        $this->addColumn($row, $helperGls->formatNumber(0));
+        $this->addColumn($row, $helperGls->formatNumber(0, 15));
 
         //25 Notifica Email
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 70));
 
         //26 Notifica Sms 1
-        $this->addColumn($row, $helperGls->formatNumber(0));
+        $this->addColumn($row, $helperGls->formatNumber(0, 10));
 
         //27 Notifica Sms 2
-        $this->addColumn($row, $helperGls->formatNumber(0));
+        $this->addColumn($row, $helperGls->formatNumber(0, 10));
 
         //28 Servizi accessori
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 50));
 
         //29 Modalità Incasso
         //CONT=CONTANTE
@@ -276,35 +276,35 @@ class Hevelop_Gls_Model_Exporter
         //ASR=ASS COME RILASCIATO
         //ASRP=ASS COM RIL NO PT
         //ASS=ASS CIRC/BANC/POST
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 4));
 
         //30 Data Prenotazione
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 6));
 
         //31 Note e/o Orario
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 40));
         //32 Notifica Sms (Parcel)
-        $this->addColumn($row, $helperGls->formatNumber(0));
+        $this->addColumn($row, $helperGls->formatNumber(0, 20));
         //33 IdentPIN
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 15));
         //34 Assicurazione integrativa
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 1));
         //35 Persona riferimento
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 50));
         //36 Telefono destinatario
-        $this->addColumn($row, $helperGls->formatNumber(0));
+        $this->addColumn($row, $helperGls->formatString('', 15));
         //37 Categoria merceologica
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 6));
         //38 Fattura doganale
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 20));
         //39 Data fattura doganale
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 6));
         //40 Pezzi dichiarati
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 6));
         //41 Nazione d'origine
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 3));
         //42 Telefono mittente
-        $this->addColumn($row, $helperGls->formatString(''));
+        $this->addColumn($row, $helperGls->formatString('', 16));
 
         return $row;
     }
