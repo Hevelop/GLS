@@ -1,14 +1,25 @@
 Hevelop Gls
 =====================
-Auto export shipping to GLS using cron scheduler
+Auto or Manual export for order to GLS CSV format using cron scheduler or magento standard export from sales order grid
 
 Requirements
 ------------
 - hevelop/transliteration
 
+How it works
+-------
+Please configure gls weblabeling like the screenshot.
+
+Type of export:
+
+- manual: from salses order grid select or filter order you want to export and select "GLS CSV" from export select box and click "Export"
+- auto: configura cron scheduler to run task "export_shipment_gls"
+
 Screenshoots
 -------
 ![alt tag](/readme/screen-be.png)
+![alt tag](/readme/screen-export.png)
+![alt tag](/readme/screen-gls.png)
 
 Support
 -------
