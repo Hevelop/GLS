@@ -210,7 +210,11 @@ class Hevelop_Gls_Model_Exporter
         $this->addColumn($row, $helperGls->formatNumber($totalWeight, 6, 1));
 
         //11 Importo Contrassegno
-        $this->addColumn($row, $helperGls->formatNumber(0, 10, 2));
+        $importoContrassegno = 0;
+        if ($this->paymentIsCheckMoney($order)) {
+            $importoContrassegno = $order->getBaseGrandTotal();
+        }
+        $this->addColumn($row, $helperGls->formatNumber($importoContrassegno, 10, 2));
 
         //12 Note
         $this->addColumn($row, $helperGls->formatString('', 40));
@@ -276,7 +280,11 @@ class Hevelop_Gls_Model_Exporter
         //ASR=ASS COME RILASCIATO
         //ASRP=ASS COM RIL NO PT
         //ASS=ASS CIRC/BANC/POST
-        $this->addColumn($row, $helperGls->formatString('', 4));
+        $modalitaIncasso = '';
+        if ($this->paymentIsCheckMoney($order)) {
+            $modalitaIncasso = 'CONT';
+        }
+        $this->addColumn($row, $helperGls->formatString($modalitaIncasso, 4));
 
         //30 Data Prenotazione
         $this->addColumn($row, $helperGls->formatString('', 6));
@@ -347,5 +355,10 @@ class Hevelop_Gls_Model_Exporter
         //Sblocco
         $uploader->_removeLock(Mage::getBaseDir('var') . DS . 'gls' . DS, 'shipment');
 
+    }
+
+    public function paymentIsCheckMoney($order)
+    {
+        return $order->getPayment()->getMethodInstance()->getCode() == Mage::helper('hevelop_gls')->getCODPaymentCode();
     }
 }

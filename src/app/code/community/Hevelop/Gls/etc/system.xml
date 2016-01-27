@@ -50,6 +50,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </delimiter>
+                        <cod translate="label comment" module="hevelop_gls">
+                            <label>Cash On Delivery Payment code</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hevelop_gls/admin_source_codpayment</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cod>
                     </fields>
                 </general>
                 <ftp translate="label comment" module="hevelop_gls">

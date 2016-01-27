@@ -9,6 +9,7 @@ class Hevelop_Gls_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_FTP_USER = 'hevelopgls/ftp/user';
     const XML_PATH_FTP_PASSWORD = 'hevelopgls/ftp/password';
     const XML_PATH_FTP_PATH = 'hevelopgls/ftp/remote_path';
+    const XML_PATH_COD_PAYMENT_CODE = 'hevelopgls/general/cod';
     const LOG_FILE = 'export_gls.log';
 
 
@@ -57,6 +58,11 @@ class Hevelop_Gls_Helper_Data extends Mage_Core_Helper_Abstract
     public function isDebugEnabled()
     {
         return Mage::getStoreConfig(self::XML_PATH_DEBUG_ENABLED);
+    }
+
+    public function getCODPaymentCode()
+    {
+        return Mage::getStoreConfig(self::XML_PATH_COD_PAYMENT_CODE);
     }
 
     public function formatString($string = '', $length = null)

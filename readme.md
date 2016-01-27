@@ -10,6 +10,8 @@ How it works
 -------
 Please configure gls weblabeling like the screenshot.
 
+* Please configure the "Cash On Delivery Payment Code", select your cash on delivery payment method
+
 Type of export:
 
 - manual: from sales order grid select or filter order you want to export and select "GLS CSV" from export select box and click "Export"
